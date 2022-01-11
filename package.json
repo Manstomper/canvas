@@ -1,0 +1,28 @@
+{
+  "name": "rig-canvas",
+  "description": "",
+  "version": "1.0.0",
+  "author": "RiG",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 1",
+    "watch": "webpack --mode development --config src/webpack.config.js --watch",
+    "build": "webpack --mode production --config src/webpack.config.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "css-loader": "^6",
+    "mini-css-extract-plugin": "^2",
+    "sass": "^1",
+    "sass-loader": "^12",
+    "vue": "^2",
+    "vue-loader": "^15",
+    "vue-template-compiler": "^2",
+    "webpack": "^5",
+    "webpack-cli": "^4",
+    "express": "^4"
+  },
+  "engines": {
+    "node": "^16",
+    "npm": "^8"
+  }
+}
