@@ -17,21 +17,39 @@ export default {
       pattern: 'circles',
     };
   },
+  mounted() {
+    this.canvas = document.getElementById('canvas');
+    this.canvas.width = document.documentElement.clientWidth;
+    this.canvas.height = document.documentElement.clientHeight;
+    this.ctx = this.canvas.getContext('2d');
+    this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+
+    // A rough estimation of the size of the viewport, used to scale output
+    const scale = Math.round((this.canvas.width + this.canvas.height) / 2);
+
+    if (scale < 500) {
+      this.multiplier = 0.25;
+    } else if (scale < 1000) {
+      this.multiplier = 0.75;
+    }
+
+    this.circles();
+  },
   methods: {
     getColorValue() {
       return Math.floor(Math.random() * 199);
     },
     getColor(alpha1, alpha2) {
       return (
-        "rgba(" +
+        'rgba(' +
         this.getColorValue() +
-        ", " +
+        ', ' +
         this.getColorValue() +
-        ", " +
+        ', ' +
         this.getColorValue() +
-        ", 0." +
+        ', 0.' +
         (Math.floor(Math.random() * alpha1) + alpha2) +
-        ")"
+        ')'
       );
     },
     togglePattern() {
@@ -83,23 +101,31 @@ export default {
       }
     },
   },
-  mounted() {
-    this.canvas = document.getElementById("canvas");
-    this.canvas.width = document.documentElement.clientWidth;
-    this.canvas.height = document.documentElement.clientHeight;
-    this.ctx = canvas.getContext("2d");
-    this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
-
-    // A rough estimation of the size of the viewport, used to scale output
-    const scale = Math.round((this.canvas.width + this.canvas.height) / 2);
-
-    if (scale < 500) {
-      this.multiplier = 0.25;
-    } else if (scale < 1000) {
-      this.multiplier = 0.75;
-    }
-
-    this.circles();
-  },
 };
 </script>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+#circle {
+  width: 25%;
+  padding-bottom: 25%;
+  border-radius: 100%;
+  background-color: #222;
+}
+</style>

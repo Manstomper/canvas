@@ -1,7 +1,6 @@
 desktop.ini
 .DS_Store
 .netbeans.xml
-.sass_cache
-public/assets
+.env
 node_modules
-vendor
+public/*
