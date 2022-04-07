@@ -1,31 +1,27 @@
 <template>
-  <div id="app">
-    <div id="container">
-      <div id="circle" @click="togglePattern()"></div>
-    </div>
-    <canvas id="canvas"></canvas>
+  <div id="container">
+    <div id="circle" @click="togglePattern()"></div>
   </div>
+  <canvas ref="canvas"></canvas>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      canvas: null,
       ctx: null,
       multiplier: 1,
       pattern: 'circles',
     };
   },
   mounted() {
-    this.canvas = document.getElementById('canvas');
-    this.canvas.width = document.documentElement.clientWidth;
-    this.canvas.height = document.documentElement.clientHeight;
-    this.ctx = this.canvas.getContext('2d');
-    this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+    this.$refs.canvas.width = document.documentElement.clientWidth;
+    this.$refs.canvas.height = document.documentElement.clientHeight;
+    this.ctx = this.$refs.canvas.getContext('2d');
+    this.ctx.translate(this.$refs.canvas.width / 2, this.$refs.canvas.height / 2);
 
     // A rough estimation of the size of the viewport, used to scale output
-    const scale = Math.round((this.canvas.width + this.canvas.height) / 2);
+    const scale = Math.round((this.$refs.canvas.width + this.$refs.canvas.height) / 2);
 
     if (scale < 500) {
       this.multiplier = 0.25;
@@ -55,7 +51,7 @@ export default {
     togglePattern() {
       this.ctx.save();
       this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.clearRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
       this.ctx.restore();
       if (this.pattern === 'circles') {
         this.pattern = 'triangles';
@@ -105,9 +101,14 @@ export default {
 </script>
 
 <style>
+/*
+Note that there is no Sass here, which means the sass and sass-loader packages are technically not needed
+In a real project there usually is so this serves as an example
+*/
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 #container {

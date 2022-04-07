@@ -6,4 +6,4 @@ express()
   .get('/', function (req, res) {
     res.render(path.join(__dirname) + '/index.html');
   })
-  .listen(process.env.PORT || 5000, '0.0.0.0');
+  .listen(5000, '0.0.0.0');

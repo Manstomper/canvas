@@ -13,6 +13,8 @@
     "css-loader": "^6",
     "express": "^4",
     "html-webpack-plugin": "^5",
+    "sass-loader": "^12",
+    "sass": "^1",
     "vue-loader": "^17",
     "vue-style-loader": "^4",
     "vue-template-compiler": "^2",
